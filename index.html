@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="ru"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+<meta charset="UTF-8">
+<title>МАСО — презентация академии</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;800;900&amp;family=Playfair+Display:ital,wght@1,400;1,700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--red:#c31807;--ink:#0F0B0B;--paper:#F1ECE3;--disp:'Unbounded',sans-serif;--serif:'Playfair Display',serif;--mono:'JetBrains Mono',monospace;--body:'Manrope',sans-serif}
+@page{size:297mm 210mm;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:#2b2626;font-family:var(--body)}
+.slide{width:297mm;height:210mm;position:relative;overflow:hidden;margin:12mm auto;background:var(--paper);color:var(--ink);break-after:page;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.slide>*{position:absolute}
+.slide:after{content:"";position:absolute;inset:0;z-index:60;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+@media print{body{background:none}.slide{margin:0;box-shadow:none}}
+.red{background:var(--red);color:#fff}
+.black{background:var(--ink);color:var(--paper)}
+.disp{font-family:var(--disp);font-weight:900;letter-spacing:-.02em;line-height:.95}
+em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+.r{color:var(--red)}
+.mono{font-family:var(--mono);font-size:7pt;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+svg.l{fill:currentColor}
+.folio{left:16mm;right:16mm;top:9mm;display:flex;justify-content:space-between;align-items:center;z-index:20}
+.folio svg{height:6.5mm;width:10mm}
+.out{color:transparent;-webkit-text-stroke:1.6px currentColor}
+
+/* МЕСТО ДЛЯ ФОТО: добавьте в style элемента  --img:url('ваше-фото.jpg');  */
+.photo{background:radial-gradient(circle,rgba(195,24,7,.75) 0 .42mm,transparent .52mm) 0 0/2.6mm 2.6mm,linear-gradient(135deg,#1b1414,#2c1b19);overflow:hidden}
+.photo[style*="--img"]{background:var(--img) center/cover no-repeat}
+.photo:not([style*="--img"])::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:700 8pt var(--mono);letter-spacing:.2em;color:#fff;background:var(--red);padding:2mm 4mm;white-space:nowrap}
+@media print{.photo::after{display:none!important}}
+
+.spin{animation:spin 28s linear infinite;transform-origin:100px 100px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulse{animation:pulse 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+@media print{.spin,.pulse{animation:none}}
+
+/* ленты */
+.tape{left:-30mm;width:360mm;height:16mm;display:flex;align-items:center;white-space:nowrap;font:900 12pt var(--disp);text-transform:uppercase;padding-left:42mm;box-shadow:0 8px 22px rgba(0,0,0,.3);letter-spacing:.02em}
+.tape.k{background:var(--ink);color:var(--paper)}
+.tape.p{background:var(--paper);color:var(--ink)}
+.tape i{font-style:normal;color:var(--red);margin:0 4mm}
+.tape b{color:var(--red)}
+
+/* периодическая таблица */
+.pt{left:16mm;right:16mm;top:24mm;display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(3,50mm);gap:2.5mm}
+.el{border:1.3px solid var(--ink);padding:3mm;display:flex;flex-direction:column;position:relative}
+.el .z{font:700 7pt var(--mono)}
+.el .sym{font:900 30pt/1 var(--disp);margin:5mm 0 auto;letter-spacing:-.03em}
+.el .nm{font:600 7.2pt/1.25 var(--body)}
+.el.new{background:var(--red);color:#fff;border-color:var(--red)}
+.el.new:after{content:"NEW";position:absolute;right:3mm;top:3mm;font:700 6.5pt var(--mono);letter-spacing:.15em}
+
+/* билеты */
+.tk{position:relative;height:38mm;margin-bottom:5.5mm;background:var(--paper);color:var(--ink);border-radius:3mm;display:grid;grid-template-columns:42mm 1fr 66mm;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.tk .code{display:flex;flex-direction:column;justify-content:center;padding-left:7mm;border-right:1px solid rgba(15,11,11,.15)}
+.tk .code b{font:900 34pt/1 var(--disp);color:var(--red);letter-spacing:-.03em;margin-top:1.5mm}
+.tk .mid{padding:4mm 7mm;display:flex;flex-direction:column;justify-content:center}
+.tk .mid h3{font:800 12.5pt/1.15 var(--disp);margin:1.5mm 0}
+.tk .mid p{font-size:8.5pt;line-height:1.4;color:#4a4240}
+.tk .stub{background:var(--red);color:#fff;border-radius:0 3mm 3mm 0;padding:4.5mm 6mm;border-left:2px dashed var(--ink);display:flex;flex-direction:column;justify-content:space-between}
+.tk .bar{height:9mm;background:repeating-linear-gradient(90deg,#fff 0 .5mm,transparent .5mm 1.1mm,#fff 1.1mm 1.4mm,transparent 1.4mm 2.3mm,#fff 2.3mm 3.3mm,transparent 3.3mm 3.8mm)}
+.tk:before,.tk:after{content:"";position:absolute;right:62.5mm;width:7mm;height:7mm;border-radius:50%;background:var(--ink)}
+.tk:before{top:-3.5mm}.tk:after{bottom:-3.5mm}
+
+/* метро */
+.stn{position:absolute;width:46mm;transform:translateX(-50%);text-align:center}
+.stn b{display:block;font:800 12pt var(--disp);margin-bottom:1.5mm}
+.stn p{font-size:8.5pt;line-height:1.35;color:#4a4240}
+
+/* лестница */
+.stairs{left:16mm;right:16mm;bottom:0;height:150mm;display:flex;align-items:flex-end;gap:2mm}
+.st{flex:1;padding:4mm;color:#fff}
+.st .y{font:900 17pt var(--disp);margin-bottom:2mm}
+.st p{font-size:7.8pt;line-height:1.35}
+
+/* документы */
+.doc{position:absolute;bottom:0;left:41mm;width:48mm;height:66mm;background:var(--paper);color:var(--ink);border-radius:1.5mm;padding:6mm 5mm;text-align:center;transform-origin:50% 130%;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.doc:before{content:"";position:absolute;inset:2.5mm;border:1px solid rgba(195,24,7,.35)}
+.doc svg{width:13mm;height:8.4mm;color:var(--red)}
+.doc .t{font:900 7.5pt var(--disp);margin:3mm 0 1.5mm;letter-spacing:.04em}
+.doc .s{font-size:6.5pt;color:#6b605c;margin-bottom:4mm}
+.doc .ln{height:1.3mm;background:#ddd3c6;margin:0 auto 2mm;border-radius:1mm}
+.doc .seal{position:absolute;right:6mm;bottom:6mm;width:12mm;height:12mm;border-radius:50%;border:1.5px solid var(--red);opacity:.7}
+</style>
+</head>
+<body>
+
+<!-- ЛОГОТИП -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="mark">
+<path d="M48.9609 20.7704V40.9104L41.9209 52.8103L34.0609 45.7003V28.0704L22.7109 33.6303V94.6904H33.6909L34.0609 67.7204L41.9209 76.6303L48.9609 65.4304V94.6904H65.1109V12.8604L48.9609 20.7704Z"></path>
+<path d="M69.7007 13.0195L69.7407 94.6795H78.8907V80.7795L87.1207 81.3495L86.9607 65.6795L78.8907 64.2195V34.9795L86.9907 38.0495V94.6795L95.9807 94.5895L95.9707 25.9195L69.7007 13.0195Z"></path>
+<path d="M99.9206 27.71L99.8706 94.63L124.381 94.52L124.401 80.36L107.981 78.33V45.88L124.401 52.05V39.71L99.9206 27.71Z"></path>
+<path d="M153.261 63.0797V53.9196L127.341 41.1396V53.2696L153.261 63.0797Z"></path>
+<path d="M127.341 80.7695V94.6295H153.261V83.9495L127.341 80.7695Z"></path>
+<path d="M136.841 59.7599L127.381 56.3799L127.461 77.6599L136.691 79.1499C136.691 76.1499 136.791 61.9799 136.841 59.7599Z"></path>
+<path d="M153.261 65.9398L143.801 62.5098L143.881 80.0698L153.261 81.5598V65.9398Z"></path>
+</g>
+<g id="ltext">
+<path d="M187.801 54.6H189.661L194.041 46.24L195.241 43.67V60.04H197.091V41.46H194.651L188.761 52.72L182.871 41.46H180.381V60.04H182.241V43.67L183.431 46.24L187.801 54.6Z"></path>
+<path d="M206.621 60.2201C209.891 60.2201 211.671 58.4401 212.191 56.1601H210.401C210.136 56.9309 209.619 57.5895 208.932 58.0289C208.246 58.4683 207.431 58.6626 206.621 58.5801C204.271 58.5801 202.731 57.0401 202.731 53.9801V53.9101H212.331V52.8201C212.331 48.8201 210.081 46.5801 206.621 46.5801C203.161 46.5801 200.931 48.8401 200.931 52.8201V54.0001C200.931 58.0001 203.151 60.2401 206.621 60.2401M206.621 48.2401C208.851 48.2401 210.361 49.6201 210.501 52.3801H202.731C202.891 49.7301 204.341 48.2401 206.621 48.2401Z"></path>
+<path d="M229.551 60.0395H231.701L227.671 53.0895L231.181 46.7695H229.101L226.081 52.3395H223.701V46.7695H221.951V52.3395H219.551L216.561 46.7695H214.471L217.991 53.1895L213.931 60.0395H216.031L219.551 53.9295H221.951V60.0395H223.701V53.9295H226.081L229.551 60.0395Z"></path>
+<path d="M244.921 63.4795H246.681V58.4795H244.841V46.7695H235.941V50.7695C235.941 55.1695 235.671 56.5695 234.431 58.4495H233.021V63.4495H234.771V59.9995H244.921V63.4795ZM237.681 50.7595V48.3595H243.071V58.4395H236.461C237.331 56.7695 237.681 55.1595 237.681 50.7595Z"></path>
+<path d="M251.061 65.3395H252.911L260.071 46.7695H258.211L254.051 57.8595L249.571 46.7695H247.601L253.091 60.0395L251.061 65.3395Z"></path>
+<path d="M272.101 60.0395H273.851V46.7695H272.101V52.4695H264.731V46.7695H262.981V60.0395H264.731V54.0595H272.101V60.0395Z"></path>
+<path d="M281.541 60.2203C282.482 60.2365 283.409 59.9954 284.224 59.5231C285.038 59.0508 285.707 58.3653 286.161 57.5403L286.421 60.0403H287.771V51.0003C287.771 48.2203 286.141 46.5703 283.001 46.5703C279.861 46.5703 278.231 48.1703 278.101 50.3503H279.981C280.111 49.0403 281.071 48.2203 282.981 48.2203C285.131 48.2203 285.981 49.1003 285.981 51.0003V52.2003H282.981C278.981 52.2003 277.411 53.7903 277.411 56.3703C277.411 58.7503 278.871 60.2103 281.521 60.2103M281.661 58.5703C280.061 58.5703 279.221 57.7103 279.221 56.3703C279.221 54.8303 280.221 53.7903 282.981 53.7903H285.981V54.4003C285.954 55.5294 285.482 56.602 284.667 57.3835C283.851 58.165 282.76 58.5918 281.631 58.5703"></path>
+<path d="M298.081 60.2201C301.081 60.2201 303.281 58.0401 303.281 53.9801V52.8201C303.281 48.7301 301.131 46.5801 298.081 46.5801C297.197 46.5289 296.316 46.7289 295.541 47.1572C294.766 47.5854 294.128 48.2244 293.701 49.0001L293.501 46.7701H292.141V65.3401H293.891V58.0901C294.336 58.7861 294.959 59.3505 295.696 59.7249C296.433 60.0994 297.256 60.2704 298.081 60.2201ZM297.681 58.5801C295.461 58.5801 293.891 56.9301 293.891 53.9801V52.6101C293.971 49.7701 295.561 48.2301 297.681 48.2301C299.801 48.2301 301.471 49.7701 301.471 52.8201V54.0001C301.471 57.0901 299.961 58.6001 297.681 58.6001"></path>
+<path d="M312.021 60.2201C315.521 60.2201 317.861 57.8901 317.861 53.9801V52.8201C317.861 48.8901 315.541 46.5801 312.021 46.5801C308.501 46.5801 306.191 48.9301 306.191 52.8201V54.0001C306.191 57.9301 308.491 60.2401 312.021 60.2401M312.021 58.6001C309.661 58.6001 308.021 56.9201 308.021 54.0001V52.8201C308.021 49.8701 309.661 48.2301 312.021 48.2301C314.381 48.2301 316.021 49.9001 316.021 52.8201V54.0001C316.021 57.0001 314.371 58.6001 312.021 58.6001Z"></path>
+<path d="M331.351 63.4795H333.111V58.4795H331.251V46.7695H322.371V50.7695C322.371 55.1695 322.101 56.5695 320.861 58.4495H319.451V63.4495H321.201V59.9995H331.351V63.4795ZM324.121 50.7595V48.3595H329.501V58.4395H322.891C323.771 56.7695 324.121 55.1595 324.121 50.7595Z"></path>
+<path d="M345.011 60.0395H346.761V46.7695H345.011V52.4695H337.631V46.7695H335.891V60.0395H337.631V54.0595H345.011V60.0395Z"></path>
+<path d="M354.461 60.2203C355.4 60.2335 356.325 59.9911 357.137 59.5191C357.949 59.047 358.618 58.363 359.071 57.5403L359.331 60.0403H360.691V51.0003C360.691 48.2203 359.041 46.5703 355.921 46.5703C352.801 46.5703 351.141 48.1703 351.001 50.3503H352.891C353.021 49.0403 353.981 48.2203 355.891 48.2203C358.041 48.2203 358.891 49.1003 358.891 51.0003V52.2003H355.891C351.891 52.2003 350.321 53.7903 350.321 56.3703C350.321 58.7503 351.781 60.2103 354.431 60.2103M354.561 58.5703C352.971 58.5703 352.121 57.7103 352.121 56.3703C352.121 54.8303 353.121 53.7903 355.891 53.7903H358.891V54.4003C358.865 55.5294 358.392 56.602 357.577 57.3835C356.762 58.165 355.67 58.5918 354.541 58.5703"></path>
+<path d="M364.251 50.9395C364.173 51.7474 364.373 52.5577 364.819 53.2361C365.264 53.9145 365.928 54.4202 366.701 54.6695L363.701 60.0395H365.701L368.381 55.0395C368.804 55.0655 369.228 55.0655 369.651 55.0395H372.281V59.9995H374.031V46.7695H369.651C365.761 46.7695 364.211 48.3095 364.211 50.9395M366.021 50.9395C366.021 49.2595 366.921 48.3595 369.651 48.3595H372.281V53.5095H369.651C366.921 53.5095 366.021 52.6095 366.021 50.9395Z"></path>
+<path d="M397.571 59.9999H399.571L392.671 41.4199H390.541L383.611 59.9999H385.521L387.521 54.6099H395.611L397.571 59.9999ZM390.001 47.7999L391.541 43.5499L393.071 47.7999L394.971 52.9099H388.121L390.001 47.7999Z"></path>
+<path d="M410.891 60.0395H413.071L408.151 53.1595L412.531 46.7695H410.351L406.561 52.3395H404.211V46.7695H402.451V60.0395H404.211V53.9295H406.561L410.891 60.0395Z"></path>
+<path d="M418.891 60.2203C419.832 60.2365 420.759 59.9954 421.574 59.5231C422.388 59.0508 423.058 58.3653 423.511 57.5403L423.781 60.0403H425.131V51.0003C425.131 48.2203 423.491 46.5703 420.351 46.5703C417.211 46.5703 415.581 48.1703 415.451 50.3503H417.331C417.471 49.0403 418.421 48.2203 420.331 48.2203C422.481 48.2203 423.331 49.1003 423.331 51.0003V52.2003H420.331C416.331 52.2003 414.761 53.7903 414.761 56.3703C414.761 58.7503 416.221 60.2103 418.871 60.2103M419.011 58.5703C417.411 58.5703 416.571 57.7103 416.571 56.3703C416.571 54.8303 417.571 53.7903 420.331 53.7903H423.331V54.4003C423.319 54.9598 423.197 55.5115 422.972 56.0238C422.747 56.5362 422.424 56.9993 422.02 57.3865C421.616 57.7738 421.139 58.0776 420.618 58.2807C420.097 58.4839 419.54 58.5823 418.981 58.5703"></path>
+<path d="M439.541 63.4795H441.291V58.4795H439.441V46.7695H430.551V50.7695C430.551 55.1695 430.291 56.5695 429.041 58.4495H427.641V63.4495H429.391V59.9995H439.541V63.4795ZM432.311 50.7595V48.3595H437.691V58.4395H431.091C431.961 56.7695 432.311 55.1595 432.311 50.7595Z"></path>
+<path d="M448.981 60.2201C452.251 60.2201 454.031 58.4401 454.551 56.1601H452.751C452.488 56.9301 451.973 57.5885 451.288 58.0279C450.603 58.4674 449.79 58.662 448.981 58.5801C446.631 58.5801 445.081 57.0401 445.081 53.9801V53.9101H454.681V52.8201C454.681 48.8201 452.431 46.5801 448.981 46.5801C445.531 46.5801 443.281 48.8401 443.281 52.8201V54.0001C443.281 58.0001 445.511 60.2401 448.981 60.2401M448.981 48.2401C451.211 48.2401 452.721 49.6201 452.861 52.3801H445.081C445.241 49.7301 446.701 48.2401 448.981 48.2401Z"></path>
+<path d="M464.281 56.7195H466.041L468.741 51.5495L470.171 48.6795V60.0395H471.921V46.7695H469.541L465.191 54.9695L460.841 46.7695H458.401V60.0395H460.151V48.6795L461.581 51.5495L464.281 56.7195Z"></path>
+<path d="M485.551 60.0395H487.301V46.7695H485.131L479.831 55.2595L478.181 58.0395V46.7695H476.421V60.0395H478.601L483.911 51.5495L485.551 48.7895V60.0395Z"></path>
+<path d="M491.021 50.9395C490.942 51.7461 491.141 52.5554 491.585 53.2336C492.029 53.9119 492.69 54.4184 493.461 54.6695L490.461 60.0395H492.461L495.141 55.0395C495.567 55.0657 495.995 55.0657 496.421 55.0395H499.041V59.9995H500.841V46.7695H496.481C492.571 46.7695 491.041 48.3095 491.041 50.9395M492.841 50.9395C492.841 49.2595 493.741 48.3595 496.481 48.3595H499.101V53.5095H496.481C493.741 53.5095 492.841 52.6095 492.841 50.9395Z"></path>
+<path d="M187.281 93.3701C188.967 93.4192 190.613 92.8459 191.904 91.7597C193.195 90.6734 194.041 89.1501 194.281 87.4801H192.281C192.063 88.646 191.444 89.6988 190.53 90.4552C189.617 91.2116 188.467 91.6238 187.281 91.6201C184.071 91.6201 181.631 89.1901 181.631 84.7601V83.0501C181.631 78.6001 184.041 76.1801 187.281 76.1801C188.395 76.1484 189.489 76.4849 190.393 77.1375C191.297 77.7901 191.96 78.7224 192.281 79.7901H194.281C193.926 78.2193 193.031 76.8231 191.751 75.8452C190.472 74.8674 188.89 74.3701 187.281 74.4401C182.931 74.4401 179.711 77.6401 179.711 83.0501V84.7601C179.711 90.1901 182.901 93.3701 187.281 93.3701Z"></path>
+<path d="M203.061 93.3695C206.561 93.3695 208.891 91.0395 208.891 87.1395V85.9995C208.891 82.0695 206.581 79.7695 203.061 79.7695C199.541 79.7695 197.221 82.0995 197.221 85.9995V87.1695C197.221 91.0995 199.531 93.3995 203.061 93.3995M203.061 91.7595C200.691 91.7595 199.061 90.0895 199.061 87.1695V85.9995C199.061 83.0595 200.701 81.4195 203.061 81.4195C205.421 81.4195 207.061 83.0795 207.061 85.9995V87.1695C207.061 90.1095 205.411 91.7595 203.061 91.7595Z"></path>
+<path d="M212.591 93.1897H218.031C221.251 93.1897 222.681 91.7597 222.681 89.3897C222.682 88.7078 222.467 88.0431 222.066 87.4913C221.665 86.9396 221.1 86.5293 220.451 86.3197C220.963 86.0619 221.393 85.6658 221.692 85.1762C221.99 84.6866 222.146 84.1232 222.141 83.5497C222.141 81.3497 220.721 79.9297 217.511 79.9297H212.591V93.1897ZM218.031 87.1897C220.111 87.1897 220.871 87.9497 220.871 89.3597C220.871 90.7697 220.111 91.5597 218.031 91.5597H214.351V87.1897H218.031ZM217.511 81.4897C219.571 81.4897 220.341 82.2597 220.341 83.4897C220.341 84.7197 219.571 85.5697 217.511 85.5697H214.351V81.4597L217.511 81.4897Z"></path>
+<path d="M232.321 93.3699C235.321 93.3699 237.521 91.1999 237.521 87.1399V85.9999C237.521 81.9199 235.371 79.7699 232.321 79.7699C231.437 79.7175 230.556 79.917 229.78 80.3454C229.005 80.7738 228.367 81.4134 227.941 82.19L227.741 79.9599H226.381V98.52H228.131V91.2799C228.578 91.9733 229.202 92.5351 229.939 92.9077C230.675 93.2803 231.497 93.4502 232.321 93.3999M231.921 91.7599C229.701 91.7599 228.131 90.1099 228.131 87.1699V85.7899C228.211 82.9599 229.801 81.4199 231.921 81.4199C234.041 81.4199 235.711 82.9599 235.711 85.9999V87.1699C235.711 90.2499 234.201 91.7599 231.921 91.7599Z"></path>
+<path d="M246.121 93.3695C249.391 93.3695 251.171 91.5895 251.691 89.3095H249.901C249.636 90.0803 249.119 90.739 248.432 91.1784C247.746 91.6178 246.931 91.812 246.121 91.7295C243.771 91.7295 242.231 90.1895 242.231 87.1395V87.0595H251.841V85.9995C251.841 81.9995 249.591 79.7695 246.131 79.7695C242.671 79.7695 240.431 82.0195 240.431 85.9995V87.1695C240.431 91.1695 242.661 93.3995 246.131 93.3995M246.131 81.3995C248.361 81.3995 249.871 82.7695 250.011 85.5295H242.241C242.391 82.8795 243.851 81.3995 246.131 81.3995Z"></path>
+<path d="M261.431 89.8797H263.191L265.891 84.6897L267.321 81.8397V93.1897H269.061V79.9297H266.681L262.331 88.1197L257.981 79.9297H255.541V93.1897H257.301V81.8397L258.721 84.6897L261.431 89.8797Z"></path>
+<path d="M278.481 93.3695C281.741 93.3695 283.481 91.5895 284.051 89.3095H282.241C281.983 90.0808 281.47 90.7411 280.787 91.1811C280.103 91.6212 279.289 91.8146 278.481 91.7295C276.121 91.7295 274.571 90.1895 274.571 87.1395V87.0595H284.171V85.9995C284.171 81.9995 281.921 79.7695 278.481 79.7695C275.041 79.7695 272.781 82.0195 272.781 85.9995V87.1695C272.781 91.1695 275.011 93.3995 278.481 93.3995M278.481 81.3995C280.701 81.3995 282.211 82.7695 282.351 85.5295H274.571C274.741 82.8795 276.201 81.3995 278.481 81.3995Z"></path>
+<path d="M297.011 93.1897H298.771V79.9297H297.011V85.6297H289.641V79.9297H287.901V93.1897H289.641V87.2197H297.011V93.1897Z"></path>
+<path d="M312.401 93.1897H314.161V79.9297H312.401V85.6297H305.031V79.9297H303.281V93.1897H305.031V87.2197H312.401V93.1897Z"></path>
+<path d="M323.711 93.3695C327.201 93.3695 329.531 91.0395 329.531 87.1395V85.9995C329.531 82.0695 327.231 79.7695 323.711 79.7695C320.191 79.7695 317.841 82.0695 317.841 85.9995V87.1695C317.841 91.0995 320.151 93.3995 323.681 93.3995M323.681 91.7595C321.311 91.7595 319.681 90.0895 319.681 87.1695V85.9995C319.681 83.0595 321.311 81.4195 323.681 81.4195C326.051 81.4195 327.681 83.0795 327.681 85.9995V87.1695C327.681 90.1095 326.041 91.7595 323.681 91.7595Z"></path>
+<path d="M333.241 93.1897H334.991V81.5197H341.731V79.9297H333.241V93.1897Z"></path>
+<path d="M349.171 93.3695C352.661 93.3695 354.991 91.0395 354.991 87.1395V85.9995C354.991 82.0695 352.691 79.7695 349.171 79.7695C345.651 79.7695 343.331 82.0995 343.331 85.9995V87.1695C343.331 91.0995 345.641 93.3995 349.171 93.3995M349.171 91.7595C346.801 91.7595 345.171 90.0895 345.171 87.1695V85.9995C345.171 83.0595 346.811 81.4195 349.171 81.4195C351.531 81.4195 353.171 83.0795 353.171 85.9995V87.1695C353.171 90.1095 351.531 91.7595 349.171 91.7595Z"></path>
+<path d="M372.501 93.3704C376.931 93.3704 380.191 90.1104 380.191 84.7604V83.0504C380.191 77.6404 376.961 74.4404 372.501 74.4404C368.041 74.4404 364.841 77.7004 364.841 83.0504V84.7604C364.841 90.1604 368.081 93.3704 372.531 93.3704M372.531 91.6204C369.271 91.6204 366.751 89.1004 366.751 84.7604V83.0504C366.751 78.6504 369.211 76.1804 372.531 76.1804C375.851 76.1804 378.311 78.7004 378.311 83.0504V84.7604C378.311 89.1604 375.851 91.6204 372.531 91.6204Z"></path>
+<path d="M389.231 93.3704C392.681 93.3704 395.041 91.0204 395.041 87.2804V86.1004C395.041 82.3104 392.741 80.0104 389.551 80.0104C388.659 79.9608 387.771 80.1508 386.978 80.5605C386.185 80.9702 385.516 81.5848 385.041 82.3404C385.251 79.7904 385.861 78.3404 387.191 77.4604C388.891 76.3704 391.331 77.0404 393.981 76.0504V74.4404C390.591 75.5004 388.591 74.7604 386.391 76.0504C383.961 77.5104 383.391 80.7504 383.391 84.3804V86.0804C383.391 91.0804 385.641 93.3704 389.251 93.3704M389.251 81.6504C391.641 81.6504 393.251 83.2704 393.251 86.1004V87.2804C393.251 90.1304 391.661 91.7304 389.251 91.7304C386.841 91.7304 385.191 90.0804 385.191 87.2804V85.9004C385.271 83.1604 386.841 81.6504 389.251 81.6504Z"></path>
+<path d="M404.691 93.3699C407.691 93.3699 409.891 91.1999 409.891 87.1399V85.9999C409.891 81.9199 407.741 79.7699 404.691 79.7699C403.807 79.7175 402.926 79.917 402.15 80.3454C401.375 80.7738 400.737 81.4134 400.311 82.19L400.111 79.9599H398.751V98.52H400.501V91.2799C400.948 91.9733 401.572 92.5351 402.309 92.9077C403.045 93.2803 403.867 93.4502 404.691 93.3999M404.291 91.7599C402.071 91.7599 400.501 90.1099 400.501 87.1699V85.7899C400.581 82.9599 402.171 81.4199 404.291 81.4199C406.411 81.4199 408.081 82.9599 408.081 85.9999V87.1699C408.081 90.2499 406.571 91.7599 404.291 91.7599Z"></path>
+<path d="M416.781 93.37C417.719 93.3831 418.643 93.1418 419.454 92.6716C420.266 92.2015 420.935 91.5201 421.391 90.7L421.651 93.18H423.011V84.18C423.011 81.4 421.361 79.75 418.241 79.75C415.121 79.75 413.461 81.34 413.321 83.51H415.211C415.341 82.22 416.291 81.4 418.211 81.4C420.361 81.4 421.211 82.27 421.211 84.18V85.37H418.211C414.211 85.37 412.641 86.97 412.641 89.54C412.641 91.92 414.101 93.38 416.751 93.38M416.871 91.74C415.291 91.74 414.431 90.89 414.431 89.54C414.431 88 415.431 86.97 418.211 86.97H421.211V87.57C421.182 88.6999 420.707 89.7726 419.89 90.5538C419.073 91.3351 417.981 91.7615 416.851 91.74"></path>
+<path d="M431.481 79.74C428.401 79.74 426.841 81.3 426.571 83.5H428.381C428.641 82.23 429.491 81.39 431.481 81.39C433.471 81.39 434.321 82.23 434.321 83.5C434.321 84.77 433.471 85.63 431.481 85.63H430.031V87.22H431.481C433.821 87.22 434.711 88.12 434.711 89.48C434.711 90.84 433.821 91.73 431.481 91.73C429.141 91.73 428.251 90.83 427.981 89.34H426.171C426.441 91.76 428.061 93.34 431.481 93.34C434.901 93.34 436.481 91.73 436.481 89.45C436.501 88.7741 436.307 88.109 435.926 87.5503C435.546 86.9916 434.998 86.5679 434.361 86.34C434.9 86.0865 435.352 85.6782 435.658 85.167C435.965 84.6559 436.112 84.0651 436.081 83.47C436.081 81.27 434.521 79.71 431.441 79.71"></path>
+<path d="M445.281 93.3695C448.781 93.3695 451.121 91.0395 451.121 87.1395V85.9995C451.121 82.0695 448.811 79.7695 445.281 79.7695C441.751 79.7695 439.451 82.0995 439.451 85.9995V87.1695C439.451 91.0995 441.751 93.3995 445.281 93.3995M445.281 91.7595C442.921 91.7595 441.281 90.0895 441.281 87.1695V85.9995C441.281 83.0595 442.921 81.4195 445.281 81.4195C447.641 81.4195 449.281 83.0795 449.281 85.9995V87.1695C449.281 90.1095 447.631 91.7595 445.281 91.7595Z"></path>
+<path d="M454.841 93.1897H460.281C463.481 93.1897 464.911 91.7597 464.911 89.3897C464.912 88.7078 464.697 88.0431 464.296 87.4913C463.895 86.9396 463.33 86.5293 462.681 86.3197C463.195 86.0628 463.628 85.6675 463.93 85.1781C464.232 84.6888 464.392 84.1248 464.391 83.5497C464.391 81.3497 462.951 79.9297 459.741 79.9297H454.841V93.1897ZM460.281 87.1897C462.341 87.1897 463.111 87.9497 463.111 89.3597C463.111 90.7697 462.341 91.5597 460.281 91.5597H456.581V87.1897H460.281ZM459.741 81.4897C461.811 81.4897 462.581 82.2597 462.581 83.4897C462.581 84.7197 461.811 85.5697 459.741 85.5697H456.581V81.4597L459.741 81.4897Z"></path>
+<path d="M471.841 93.37C472.779 93.3842 473.704 93.1433 474.516 92.6731C475.327 92.2028 475.996 91.5208 476.451 90.7L476.721 93.18H478.071V84.18C478.071 81.4 476.421 79.75 473.301 79.75C470.181 79.75 468.521 81.34 468.381 83.51H470.281C470.411 82.22 471.351 81.4 473.281 81.4C475.431 81.4 476.281 82.27 476.281 84.18V85.37H473.281C469.281 85.37 467.711 86.97 467.711 89.54C467.711 91.92 469.171 93.38 471.821 93.38M471.951 91.74C470.361 91.74 469.501 90.89 469.501 89.54C469.501 88 470.501 86.97 473.281 86.97H476.281V87.57C476.255 88.699 475.782 89.7717 474.967 90.5532C474.152 91.3347 473.06 91.7615 471.931 91.74"></path>
+<path d="M491.501 93.1897H493.261V79.9297H491.501V85.6297H484.131V79.9297H482.391V93.1897H484.131V87.2197H491.501V93.1897Z"></path>
+<path d="M506.891 93.1897H508.651V79.9297H506.471L501.161 88.4197L499.521 91.1997V79.9297H497.771V93.1897H499.941L505.241 84.6897L506.891 81.9397V93.1897Z"></path>
+<path d="M512.361 84.0897C512.285 84.8958 512.484 85.7039 512.925 86.3828C513.366 87.0618 514.024 87.5717 514.791 87.8297L511.791 93.1897H513.791L516.461 88.1897C516.884 88.2156 517.308 88.2156 517.731 88.1897H520.361V93.1297H522.111V79.9297H517.841C513.951 79.9297 512.411 81.4697 512.411 84.0897M514.221 84.0897C514.221 82.4197 515.111 81.5197 517.841 81.5197H520.471V86.6597H517.841C515.111 86.6597 514.221 85.7597 514.221 84.0897Z"></path>
+</g>
+</defs></svg>
+
+<!-- 01 ОБЛОЖКА -->
+<section class="slide red">
+  <svg class="l" viewBox="20 10 136 88" style="right:-140mm;top:-8mm;height:226mm;width:349mm;color:rgba(0,0,0,.13)"><use href="#mark"></use></svg>
+  <svg class="l" viewBox="18 8 508 94" style="left:16mm;top:13mm;width:100mm;height:18.5mm;color:#fff"><use href="#mark"></use><use href="#ltext"></use></svg>
+  <div class="mono" style="right:16mm;top:20mm;opacity:.85">ДПО · с 1998 · вся Россия</div>
+  <h1 class="disp" style="left:15mm;top:50mm;font-size:56pt;line-height:.93">Получите<br>профессию,<br><em style="font-size:60pt">о которой</em><br><em style="font-size:60pt">давно мечтали</em></h1>
+  <p style="left:16mm;top:146mm;width:120mm;font-size:10pt;line-height:1.5;opacity:.92">Дополнительное профессиональное образование по всей России — теперь и в сфере искусственного интеллекта, цифровых технологий и беспилотных систем.</p>
+  <div style="right:10mm;top:28mm;width:120mm;height:120mm;border-radius:50%;border:1.2px dashed rgba(255,255,255,.5)"></div>
+  <div class="photo" data-label="ФОТО 1" style="right:18mm;top:36mm;width:104mm;height:104mm;border-radius:50%"></div>
+  <svg viewBox="0 0 200 200" style="right:100mm;top:116mm;width:46mm;height:46mm;z-index:5">
+    <defs><path id="c1" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"></path></defs>
+    <circle cx="100" cy="100" r="100" fill="#0F0B0B"></circle>
+    <g class="spin"><text font-family="JetBrains Mono" font-weight="700" font-size="13" letter-spacing="3" fill="#F1ECE3"><textPath href="#c1">С 1998 ГОДА ✱ ДПО ПО ВСЕЙ РОССИИ ✱ ОНЛАЙН ✱ </textPath></text></g>
+    <text x="100" y="104" text-anchor="middle" font-family="Unbounded" font-weight="900" font-size="30" fill="#c31807">109K+</text>
+    <text x="100" y="124" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="10" letter-spacing="2" fill="#F1ECE3">ВЫПУСКНИКОВ</text>
+  </svg>
+  <div style="writing-mode:vertical-rl;right:6mm;top:44mm" class="mono">Международная академия современного образования</div>
+  <div class="mono" style="left:16mm;right:16mm;top:176mm;border-top:1px solid rgba(255,255,255,.45);padding-top:4mm;display:flex;justify-content:space-between">
+    <span>✱ Профпереподготовка</span><span>✱ Повышение квалификации</span><span>✱ Рабочие профессии</span><span>maso.academy →</span>
+  </div>
+</section>
+
+<!-- 02 О НАС -->
+<section class="slide">
+  <div class="folio"><svg class="l r" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">01 / О нас</span><span class="mono">maso.academy</span></div>
+  <div class="photo" data-label="ФОТО 2" style="left:16mm;top:24mm;width:92mm;height:170mm;border-radius:46mm 46mm 0 0"></div>
+  <div style="left:62mm;top:150mm;background:var(--red);color:#fff;padding:4mm 6mm;transform:rotate(-5deg);box-shadow:0 14px 30px rgba(0,0,0,.3);z-index:3">
+    <div class="disp" style="font-size:24pt">30 000+</div><div class="mono" style="margin-top:1.5mm">учатся прямо сейчас</div>
+  </div>
+  <div style="left:122mm;right:16mm;top:28mm">
+    <div class="mono r">✱ Кто мы</div>
+    <h2 class="disp" style="font-size:23pt;line-height:1.08;margin:5mm 0 6mm;font-weight:800">Современная академия, которая обучает <em class="r">тысячи людей</em> по всей России</h2>
+    <p style="font-size:10pt;line-height:1.5;color:#4a4240;margin-bottom:7mm">МАСО отвечает передовым требованиям образовательных стандартов и специализируется на дополнительном профессиональном образовании:</p>
+    <div style="font:800 13pt var(--disp)">
+      <div style="display:grid;grid-template-columns:10mm 1fr 8mm;align-items:center;border-top:1.2px solid var(--ink);padding:4mm 0"><span class="mono r">А</span>Профессиональная переподготовка<span class="r">↗</span></div>
+      <div style="display:grid;grid-template-columns:10mm 1fr 8mm;align-items:center;border-top:1.2px solid var(--ink);padding:4mm 0"><span class="mono r">Б</span>Повышение квалификации<span class="r">↗</span></div>
+      <div style="display:grid;grid-template-columns:10mm 1fr 8mm;align-items:center;border-top:1.2px solid var(--ink);border-bottom:1.2px solid var(--ink);padding:4mm 0"><span class="mono r">В</span>Обучение рабочим профессиям<span class="r">↗</span></div>
+    </div>
+  </div>
+  <div class="disp out r" style="right:16mm;bottom:10mm;font-size:64pt"><em style="-webkit-text-stroke:0;color:var(--ink);font-size:40pt">с </em>1998</div>
+</section>
+
+<!-- 03 МИССИЯ -->
+<section class="slide black">
+  <div class="folio"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">02 / Миссия</span><span class="mono">maso.academy</span></div>
+  <div style="left:-4mm;top:-44mm;font:italic 400 400pt/1 var(--serif);color:var(--red)">“</div>
+  <div class="mono r" style="left:16mm;top:44mm">✱ Наша миссия</div>
+  <h1 class="disp" style="left:16mm;right:16mm;top:54mm;font-size:33pt;line-height:1.12;text-transform:uppercase">Обучить <span style="background:var(--red);color:#fff;padding:0 2mm;-webkit-box-decoration-break:clone;box-decoration-break:clone">как можно больше</span> людей самым <em class="r" style="text-transform:none;font-size:44pt">востребованным</em> профессиям</h1>
+  <div class="mono" style="left:16mm;top:122mm;opacity:.6">— МАСО · с 1998 года</div>
+  <div class="tape" style="top:150mm;transform:rotate(-4deg);background:var(--red);color:#fff">Онлайн-обучение <i style="color:var(--ink)">✱</i> Документы установленного образца <i style="color:var(--ink)">✱</i> Вся Россия <i style="color:var(--ink)">✱</i> Онлайн-обучение <i style="color:var(--ink)">✱</i></div>
+  <div class="tape p" style="top:160mm;transform:rotate(3deg)">Вся Россия <i>✱</i> Онлайн-обучение <i>✱</i> Документы установленного образца <i>✱</i> Вся Россия <i>✱</i></div>
+</section>
+
+<!-- 04 ИНСТИТУТЫ -->
+<section class="slide">
+  <div class="folio"><svg class="l r" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">03 / Институты</span><span class="mono">maso.academy</span></div>
+  <div class="pt">
+    <div class="el new" style="grid-area:1/1"><span class="z">01</span><span class="sym">Цт</span><span class="nm">Институт цифровых технологий</span></div>
+    <div style="grid-area:1/2/2/6;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4mm 2mm">
+      <div class="mono r" style="margin-bottom:3mm">✱ Структура академии</div>
+      <div class="disp" style="font-size:22pt;line-height:1.02">Периодическая система <em class="r">профессий</em></div>
+    </div>
+    <div class="el new" style="grid-area:1/6"><span class="z">02</span><span class="sym">Ии</span><span class="nm">Институт искусственного интеллекта</span></div>
+    <div class="el new" style="grid-area:1/7"><span class="z">03</span><span class="sym">Бс</span><span class="nm">Беспилотных систем и виртуальной реальности</span></div>
+
+    <div class="el" style="grid-area:2/1"><span class="z">04</span><span class="sym">Кп</span><span class="nm">Кадровой политики, управления персоналом и коучинга</span></div>
+    <div class="el" style="grid-area:2/2"><span class="z">05</span><span class="sym">Со</span><span class="nm">Социальной сферы и сферы обслуживания</span></div>
+    <div style="grid-area:2/3/3/5;display:flex;flex-direction:column;justify-content:center;gap:3mm;padding:0 5mm;font-size:8pt;font-weight:600">
+      <div style="display:flex;gap:3mm;align-items:center"><span style="width:6mm;height:6mm;background:var(--red)"></span>Новые институты</div>
+      <div style="display:flex;gap:3mm;align-items:center"><span style="width:6mm;height:6mm;border:1.3px solid var(--ink)"></span>Классические направления</div>
+    </div>
+    <div class="el" style="grid-area:2/5"><span class="z">06</span><span class="sym">Сх</span><span class="nm">Сельского хозяйства, экологии и ветеринарии</span></div>
+    <div class="el" style="grid-area:2/6"><span class="z">07</span><span class="sym">Мф</span><span class="nm">Медицины и фармации</span></div>
+    <div class="el" style="grid-area:2/7"><span class="z">08</span><span class="sym">Тб</span><span class="nm">Труда и безопасности: охрана труда, ПТМ, промышленная и электробезопасность</span></div>
+
+    <div class="el" style="grid-area:3/1"><span class="z">09</span><span class="sym">Бм</span><span class="nm">Бизнеса и менеджмента</span></div>
+    <div class="el" style="grid-area:3/2"><span class="z">10</span><span class="sym">Уп</span><span class="nm">Управления бизнес-процессами и менеджмента</span></div>
+    <div class="el" style="grid-area:3/3"><span class="z">11</span><span class="sym">Пп</span><span class="nm">Педагогики и психологии</span></div>
+    <div class="el" style="grid-area:3/4"><span class="z">12</span><span class="sym">Юг</span><span class="nm">Юриспруденции и государственной службы</span></div>
+    <div class="el" style="grid-area:3/5"><span class="z">13</span><span class="sym">Фэ</span><span class="nm">Финансов, экономики и труда: бухучёт, аудит, госзакупки, банки</span></div>
+    <div style="grid-area:3/6/4/8;display:flex;flex-direction:column;justify-content:flex-end;padding-left:5mm">
+      <div class="disp r" style="font-size:64pt">13</div>
+      <div style="font-size:9pt;font-weight:600;margin-top:2mm">институтов — от рабочих профессий до искусственного интеллекта</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 НОВЫЕ ИНСТИТУТЫ -->
+<section class="slide black">
+  <div class="folio"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">04 / Новые институты</span><span class="mono r">● Посадка открыта</span></div>
+  <h2 class="disp" style="left:16mm;top:24mm;font-size:24pt">Профессии будущего: <em class="r">посадка открыта</em></h2>
+  <div style="left:16mm;right:16mm;top:52mm">
+    <div class="tk" style="transform:rotate(-1.2deg)">
+      <div class="code"><span class="mono">Выход 01</span><b>Цт</b></div>
+      <div class="mid"><span class="mono r">Институт · New</span><h3>Цифровых технологий</h3><p>Программирование, веб-разработка, аналитика данных, кибербезопасность, цифровизация бизнеса</p></div>
+      <div class="stub"><span class="mono">Посадочный талон</span><div class="disp" style="font-size:11pt">ВЫЛЕТ: СЕЙЧАС</div><div class="bar"></div></div>
+    </div>
+    <div class="tk" style="transform:rotate(.8deg) translateX(5mm)">
+      <div class="code"><span class="mono">Выход 02</span><b>Ии</b></div>
+      <div class="mid"><span class="mono r">Институт · New</span><h3>Искусственного интеллекта</h3><p>Машинное обучение, нейросети для бизнеса, промпт-инжиниринг, ИИ в образовании, медицине и маркетинге</p></div>
+      <div class="stub"><span class="mono">Посадочный талон</span><div class="disp" style="font-size:11pt">ВЫЛЕТ: СЕЙЧАС</div><div class="bar"></div></div>
+    </div>
+    <div class="tk" style="transform:rotate(-.5deg)">
+      <div class="code"><span class="mono">Выход 03</span><b>Бс</b></div>
+      <div class="mid"><span class="mono r">Институт · New</span><h3>Беспилотных систем и VR</h3><p>Эксплуатация БАС, аэросъёмка, разработка VR/AR-решений и иммерсивных тренажёров</p></div>
+      <div class="stub"><span class="mono">Посадочный талон</span><div class="disp" style="font-size:11pt">ВЫЛЕТ: СЕЙЧАС</div><div class="bar"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 НАПРАВЛЕНИЯ -->
+<section class="slide red">
+  <div class="folio"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">05 / Направления</span><span class="mono">maso.academy</span></div>
+  <div class="tape k" style="top:34mm;transform:rotate(-5deg)"><b>Искусственный интеллект</b><i>✱</i><b>Беспилотные системы</b><i>✱</i><b>VR / AR</b><i>✱</i><b>IT-технологии</b><i>✱</i>Здравоохранение<i>✱</i></div>
+  <div class="tape p" style="top:62mm;transform:rotate(3deg)">Здравоохранение<i>✱</i>Безопасность<i>✱</i>Образование<i>✱</i>Рабочие профессии<i>✱</i>Экономика<i>✱</i></div>
+  <div class="tape k" style="top:90mm;transform:rotate(-2deg)">Управление персоналом<i>✱</i>Туризм и сервис<i>✱</i>Строительство<i>✱</i>Культура, искусство, спорт<i>✱</i></div>
+  <div class="tape p" style="top:116mm;transform:rotate(4deg)">Государственная служба<i>✱</i>Психология<i>✱</i>PR, реклама, журналистика<i>✱</i>Транспорт<i>✱</i>Другие курсы<i>✱</i></div>
+  <div style="left:16mm;bottom:14mm;display:flex;align-items:flex-end;gap:6mm">
+    <div class="disp" style="font-size:110pt;line-height:.8">18</div>
+    <div class="disp" style="font-size:22pt;line-height:1.05;padding-bottom:1mm">направлений —<br><em>одна академия</em></div>
+  </div>
+  <div class="mono" style="right:16mm;bottom:16mm;text-align:right;line-height:1.8">Выбирайте своё<br>красным — новые направления</div>
+</section>
+
+<!-- 07 КАК ПРОХОДИТ ОБУЧЕНИЕ -->
+<section class="slide">
+  <div class="folio"><svg class="l r" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">06 / Как проходит обучение</span><span class="mono">maso.academy</span></div>
+  <div style="left:16mm;top:24mm"><div class="mono r">✱ 6 простых шагов</div><h2 class="disp" style="font-size:34pt;margin-top:3mm">Маршрут <em class="r">к диплому</em></h2></div>
+  <div style="right:16mm;top:28mm;display:flex;gap:4mm;align-items:center">
+    <div style="width:15mm;height:15mm;border-radius:50%;background:var(--red);display:grid;place-items:center"><svg class="l" viewBox="20 10 136 88" style="width:10mm;height:6.5mm;color:#fff"><use href="#mark"></use></svg></div>
+    <div class="mono" style="line-height:1.7">Линия МАСО<br>6 станций · без пересадок<br>Всё онлайн</div>
+  </div>
+  <div style="left:16mm;top:66mm;width:265mm;height:119mm">
+    <svg viewBox="0 0 1000 450" style="width:100%;height:100%;overflow:visible">
+      <path d="M60,320 H330 L430,150 H620 L720,320 H940" stroke="#e2d9cc" stroke-width="40" fill="none" stroke-linejoin="round" stroke-linecap="round"></path>
+      <path d="M60,320 H330 L430,150 H620 L720,320 H940" stroke="#c31807" stroke-width="14" fill="none" stroke-linejoin="round" stroke-linecap="round"></path>
+      <g font-family="Unbounded" font-weight="900" font-size="15" text-anchor="middle">
+        <circle cx="60" cy="320" r="18" fill="#fff" stroke="#0F0B0B" stroke-width="6"></circle><text x="60" y="326">1</text>
+        <circle cx="230" cy="320" r="18" fill="#fff" stroke="#0F0B0B" stroke-width="6"></circle><text x="230" y="326">2</text>
+        <circle cx="480" cy="150" r="18" fill="#fff" stroke="#0F0B0B" stroke-width="6"></circle><text x="480" y="156">3</text>
+        <circle cx="600" cy="150" r="18" fill="#fff" stroke="#0F0B0B" stroke-width="6"></circle><text x="600" y="156">4</text>
+        <circle cx="800" cy="320" r="18" fill="#fff" stroke="#0F0B0B" stroke-width="6"></circle><text x="800" y="326">5</text>
+        <circle class="pulse" cx="940" cy="320" r="30" fill="none" stroke="#c31807" stroke-width="3"></circle>
+        <circle cx="940" cy="320" r="28" fill="#c31807" stroke="#0F0B0B" stroke-width="6"></circle><text x="940" y="327" fill="#fff" font-size="20">6</text>
+      </g>
+    </svg>
+    <div class="mono" style="position:absolute;left:6%;bottom:calc(28.9% + 9mm);transform:translateX(-50%);background:var(--ink);color:#fff;padding:1.5mm 3mm;white-space:nowrap">Вы здесь ↓</div>
+    <div class="stn" style="left:6%;top:calc(71.1% + 8mm)"><b>Заявка</b><p>Оформление заявки на обучение на сайте</p></div>
+    <div class="stn" style="left:23%;top:calc(71.1% + 8mm)"><b>Договор</b><p>Заключение договора, документы и оплата</p></div>
+    <div class="stn" style="left:48%;bottom:calc(66.7% + 8mm)"><b>Обучение</b><p>Доступ к системе дистанционного обучения — на e-mail</p></div>
+    <div class="stn" style="left:60%;top:calc(33.3% + 8mm)"><b>Тест</b><p>Итоговое тестирование по окончании курса</p></div>
+    <div class="stn" style="left:80%;top:calc(71.1% + 8mm)"><b>Документы</b><p>Оформление и отправка выпускных документов</p></div>
+    <div class="stn" style="left:94%;top:calc(71.1% + 10mm)"><b class="r">Диплом!</b><p>Получение документа об обучении</p></div>
+  </div>
+</section>
+
+<!-- 08 ЦИФРЫ -->
+<section class="slide black">
+  <div class="folio"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">07 / В цифрах</span><span class="mono">maso.academy</span></div>
+  <div style="left:16mm;right:16mm;top:26mm">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(241,236,227,.25);padding:3mm 0">
+      <div class="disp r" style="font-size:86pt;line-height:.9">109 000+</div>
+      <div style="width:52mm;text-align:right"><div class="mono r">Выпускники</div><p style="font-size:10pt;margin-top:2mm">человек уже прошли обучение в академии</p></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(241,236,227,.25);padding:3mm 0">
+      <div class="disp out" style="font-size:86pt;line-height:.9">89 000+</div>
+      <div style="width:52mm;text-align:right"><div class="mono r">Курсы</div><p style="font-size:10pt;margin-top:2mm">курсов самых разных направлений</p></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(241,236,227,.25);padding:3mm 0">
+      <div class="disp" style="font-size:86pt;line-height:.9">30 000+</div>
+      <div style="width:52mm;text-align:right"><div class="mono r">Сейчас</div><p style="font-size:10pt;margin-top:2mm">учеников осваивают передовые профессии</p></div>
+    </div>
+  </div>
+  <div style="left:16mm;right:16mm;bottom:14mm;display:grid;grid-template-columns:repeat(4,1fr);gap:6mm">
+    <div><div class="disp" style="font-size:22pt">13</div><div class="mono" style="opacity:.6;margin-top:2mm">институтов</div></div>
+    <div><div class="disp" style="font-size:22pt">18</div><div class="mono" style="opacity:.6;margin-top:2mm">направлений</div></div>
+    <div><div class="disp" style="font-size:22pt">1998</div><div class="mono" style="opacity:.6;margin-top:2mm">год основания</div></div>
+    <div><div class="disp r" style="font-size:22pt">от 800 ₽</div><div class="mono" style="opacity:.6;margin-top:2mm">стоимость курса</div></div>
+  </div>
+</section>
+
+<!-- 09 КАРТА -->
+<section class="slide">
+  <div class="folio"><svg class="l r" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">08 / География</span><span class="mono">maso.academy</span></div>
+  <div style="left:16mm;top:22mm"><div class="mono r">✱ Наши клиенты</div><h2 class="disp" style="font-size:24pt;line-height:1.05;margin-top:3mm">Нас выбирают<br><em class="r">от Калининграда до Камчатки</em></h2></div>
+  <div style="right:16mm;top:24mm;display:flex;gap:10mm;text-align:right">
+    <div><div class="disp r" style="font-size:30pt" id="cityCount">0</div><div class="mono" style="margin-top:2mm">городов с клиентами</div></div>
+    <div><div class="disp" style="font-size:30pt">11</div><div class="mono" style="margin-top:2mm">часовых поясов</div></div>
+  </div>
+  <div id="map" style="left:16mm;top:56mm;width:265mm;height:124.5mm"></div>
+  <div class="mono" style="left:16mm;bottom:9mm;opacity:.6">● Москва — головной офис · чем краснее точки, тем больше клиентов рядом</div>
+</section>
+
+<!-- 10 ИСТОРИЯ -->
+<section class="slide red">
+  <div class="folio"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">09 / История</span><span class="mono">1998 → 2025</span></div>
+  <div style="left:16mm;top:24mm"><div class="mono">✱ Наша история</div><h2 class="disp" style="font-size:30pt;margin-top:3mm;line-height:1.05">Наша история —<br><em>только вверх</em></h2></div>
+  <div class="stairs">
+    <div class="st" style="height:45mm;background:rgba(0,0,0,.12)"><div class="y">1998</div><p>Регистрация и образовательная лицензия</p></div>
+    <div class="st" style="height:58mm;background:rgba(0,0,0,.22)"><div class="y">2004</div><p><b>1 000</b> выпускников</p></div>
+    <div class="st" style="height:71mm;background:rgba(0,0,0,.32)"><div class="y">2010</div><p><b>2 000</b> выпускников доверили нам своё образование</p></div>
+    <div class="st" style="height:84mm;background:rgba(0,0,0,.44)"><div class="y">2016</div><p>Бессрочная лицензия на обучение всех категорий граждан в системе ДО и ДПО</p></div>
+    <div class="st" style="height:97mm;background:rgba(0,0,0,.58)"><div class="y">2017</div><p><b>3 000</b> выпускников. Запуск дистанционного обучения</p></div>
+    <div class="st" style="height:110mm;background:rgba(0,0,0,.75)"><div class="y">2020</div><p>Образовательные услуги — по всей России</p></div>
+    <div class="st" style="height:128mm;background:var(--paper);color:var(--ink)"><div class="y r">2025</div><p>Институты цифровых технологий, ИИ, беспилотных систем и VR</p></div>
+  </div>
+</section>
+
+<!-- 11 ПРЕИМУЩЕСТВА -->
+<section class="slide">
+  <div class="folio"><svg class="l r" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">10 / Преимущества</span><span class="mono">maso.academy</span></div>
+  <h2 class="disp" style="left:16mm;top:24mm;font-size:28pt">Преимущества <em class="r">обучения у нас</em></h2>
+  <div style="left:16mm;right:16mm;top:52mm;display:grid;grid-template-columns:repeat(3,1fr)">
+    <div style="padding-right:7mm"><div class="disp out r" style="font-size:80pt">01</div><h3 class="disp" style="font-size:14pt;font-weight:800;margin:5mm 0 3mm">Профстандарты</h3><p style="font-size:9pt;line-height:1.45;color:#4a4240">Программы соответствуют профстандартам, вступившим в силу 1 июля 2016 года (закон от 02.05.2015 № 122-ФЗ)</p></div>
+    <div style="padding:0 7mm;border-left:1.2px solid var(--ink)"><div class="disp out r" style="font-size:80pt">02</div><h3 class="disp" style="font-size:14pt;font-weight:800;margin:5mm 0 3mm">Личный менеджер</h3><p style="font-size:9pt;line-height:1.45;color:#4a4240">Отвечает на вопросы и при необходимости помогает с подготовкой аттестационной работы</p></div>
+    <div style="padding-left:7mm;border-left:1.2px solid var(--ink)"><div class="disp out r" style="font-size:80pt">03</div><h3 class="disp" style="font-size:14pt;font-weight:800;margin:5mm 0 3mm">Сжатые сроки</h3><p style="font-size:9pt;line-height:1.45;color:#4a4240">Одни из самых быстрых сроков переподготовки и повышения квалификации, индивидуальный график</p></div>
+  </div>
+  <div style="left:0;right:0;bottom:0;height:50mm;background:var(--ink);color:var(--paper)">
+    <div class="mono r" style="position:absolute;left:16mm;top:9mm">✱ Наша цель</div>
+    <div style="position:absolute;left:16mm;top:17mm;width:215mm;font:italic 400 24pt/1.15 var(--serif)">Формирование профессиональных компетенций у работников разных профессий</div>
+    <div class="disp r" style="position:absolute;right:16mm;top:6mm;font-size:70pt">✱</div>
+  </div>
+</section>
+
+<!-- 12 СТОИМОСТЬ + ДОКУМЕНТЫ -->
+<section class="slide black">
+  <div class="folio"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">11 / Стоимость</span><span class="mono">maso.academy</span></div>
+  <div style="left:28mm;top:4mm;width:92mm;height:190mm;transform:rotate(-7deg);transform-origin:50% 0">
+    <div style="position:absolute;left:50%;top:-30mm;width:1.2px;height:79.5mm;background:var(--paper)"></div>
+    <div style="position:absolute;left:0;top:34mm;width:92mm;height:140mm;background:var(--red);color:#fff;clip-path:polygon(50% 0,100% 16%,100% 100%,0 100%,0 16%);padding-top:36mm;text-align:center">
+      <div class="mono">Стоимость курса</div>
+      <div style="font:italic 400 24pt var(--serif);margin-top:3mm">от</div>
+      <div class="disp" style="font-size:48pt">800 ₽</div>
+      <div style="border-top:1.5px dashed rgba(255,255,255,.6);margin:6mm 10mm 5mm"></div>
+      <div class="mono">до</div>
+      <div class="disp" style="font-size:22pt;margin-top:2mm">29 000 ₽</div>
+    </div>
+    <div style="position:absolute;left:50%;top:46mm;width:7mm;height:7mm;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%);border:1.5px solid rgba(255,255,255,.6)"></div>
+  </div>
+  <div style="left:140mm;right:16mm;top:24mm">
+    <div class="mono r">✱ Доступно каждому</div>
+    <h2 class="disp" style="font-size:26pt;margin:3mm 0 6mm;line-height:1.05">Курсы <em class="r">под любой</em> бюджет</h2>
+    <div style="font-size:9.5pt;line-height:1.45;display:grid;gap:2.5mm">
+      <div><span class="r">✱</span> Стоимость зависит от количества часов и типа документа</div>
+      <div><span class="r">✱</span> Все курсы разработаны специалистами в каждой сфере</div>
+      <div><span class="r">✱</span> Учебные материалы постоянно обновляются</div>
+    </div>
+  </div>
+  <div class="mono" style="left:150mm;top:98mm;opacity:.6">Образцы выдаваемых документов</div>
+  <div style="left:150mm;top:106mm;width:130mm;height:90mm">
+    <div class="doc" style="transform:rotate(-16deg)"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><div class="t">УДОСТОВЕРЕНИЕ</div><div class="s">о повышении квалификации</div><div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div><div class="ln" style="width:50%"></div><div class="seal"></div></div>
+    <div class="doc" style="transform:rotate(16deg)"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><div class="t">СВИДЕТЕЛЬСТВО</div><div class="s">о профессии рабочего</div><div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div><div class="ln" style="width:50%"></div><div class="seal"></div></div>
+    <div class="doc" style="transform:translateY(-4mm)"><svg class="l" viewBox="20 10 136 88"><use href="#mark"></use></svg><div class="t">ДИПЛОМ</div><div class="s">о профессиональной переподготовке</div><div class="ln" style="width:90%"></div><div class="ln" style="width:70%"></div><div class="ln" style="width:50%"></div><div class="seal"></div></div>
+  </div>
+</section>
+
+<!-- 13 ПОЧЕМУ МЫ + ЛИЦЕНЗИЯ -->
+<section class="slide">
+  <div class="folio"><svg class="l r" viewBox="20 10 136 88"><use href="#mark"></use></svg><span class="mono">12 / Почему МАСО</span><span class="mono">maso.academy</span></div>
+  <div style="left:16mm;top:24mm;width:150mm">
+    <div class="mono r">✱ Выбирайте с уверенностью</div>
+    <h2 class="disp" style="font-size:28pt;margin-top:3mm">Почему <em class="r">именно мы</em></h2>
+  </div>
+  <div style="left:16mm;top:60mm;width:150mm">
+    <div style="display:grid;grid-template-columns:12mm 1fr 8mm;align-items:center;border-top:1.2px solid var(--ink);padding:5mm 0"><span class="mono r">01</span><div><div class="disp" style="font-size:20pt">Поможем выбрать</div><p style="font-size:9pt;color:#4a4240;margin-top:1.5mm">курсы, которые подойдут именно вам</p></div><span class="disp r" style="font-size:16pt">↗</span></div>
+    <div style="display:grid;grid-template-columns:12mm 1fr 8mm;align-items:center;border-top:1.2px solid var(--ink);padding:5mm 0"><span class="mono r">02</span><div><div class="disp" style="font-size:20pt">Дадим скидку</div><p style="font-size:9pt;color:#4a4240;margin-top:1.5mm">при повторном приобретении курса</p></div><span class="disp r" style="font-size:16pt">↗</span></div>
+    <div style="display:grid;grid-template-columns:12mm 1fr 8mm;align-items:center;border-top:1.2px solid var(--ink);border-bottom:1.2px solid var(--ink);padding:5mm 0"><span class="mono r">03</span><div><div class="disp" style="font-size:20pt">Снизим цену</div><p style="font-size:9pt;color:#4a4240;margin-top:1.5mm">если найдёте такой же курс дешевле</p></div><span class="disp r" style="font-size:16pt">↗</span></div>
+  </div>
+  <svg viewBox="0 0 240 240" style="right:14mm;top:34mm;width:118mm;height:118mm;transform:rotate(-12deg);mix-blend-mode:multiply">
+    <defs>
+      <path id="sealp" d="M120,120 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0"></path>
+      <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" result="t"></feTurbulence><feColorMatrix in="t" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -3 0 0 0 2.6" result="m"></feColorMatrix><feComposite in="SourceGraphic" in2="m" operator="in"></feComposite></filter>
+    </defs>
+    <g filter="url(#rough)">
+      <circle cx="120" cy="120" r="114" fill="none" stroke="#c31807" stroke-width="4"></circle>
+      <circle cx="120" cy="120" r="106" fill="none" stroke="#c31807" stroke-width="1.2"></circle>
+      <circle cx="120" cy="120" r="74" fill="none" stroke="#c31807" stroke-width="1.2"></circle>
+      <text font-family="JetBrains Mono" font-weight="700" font-size="14" letter-spacing="1.8" fill="#c31807"><textPath href="#sealp">ОБРАЗОВАТЕЛЬНАЯ ЛИЦЕНЗИЯ ✱ № 041231 ✱ ОТ 30.12.2020 ✱</textPath></text>
+      <svg x="80" y="70" width="80" height="52" viewBox="20 10 136 88" fill="#c31807"><use href="#mark"></use></svg>
+      <text x="120" y="148" text-anchor="middle" font-family="Unbounded" font-weight="900" font-size="17" fill="#c31807">№ 041231</text>
+      <text x="120" y="166" text-anchor="middle" font-family="JetBrains Mono" font-weight="700" font-size="10" letter-spacing="2" fill="#c31807">30.12.2020</text>
+    </g>
+  </svg>
+  <div class="mono" style="right:16mm;bottom:14mm;text-align:right;line-height:1.8">Лицензия на образовательную деятельность<br><span class="r">№ 041231 от 30.12.2020</span></div>
+</section>
+
+<!-- 14 КОНТАКТЫ -->
+<section class="slide red">
+  <svg class="l" viewBox="18 8 508 94" style="left:16mm;top:14mm;width:120mm;height:22.2mm;color:#fff"><use href="#mark"></use><use href="#ltext"></use></svg>
+  <svg viewBox="0 0 200 200" style="right:20mm;top:12mm;width:42mm;height:42mm">
+    <defs><path id="c2" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"></path></defs>
+    <circle cx="100" cy="100" r="100" fill="#0F0B0B"></circle>
+    <g class="spin"><text font-family="JetBrains Mono" font-weight="700" font-size="13" letter-spacing="3" fill="#F1ECE3"><textPath href="#c2">НАЧНИТЕ УЧИТЬСЯ УЖЕ СЕГОДНЯ ✱ МАСО ✱ ДПО ✱ </textPath></text></g>
+    <text x="100" y="116" text-anchor="middle" font-family="Unbounded" font-weight="900" font-size="46" fill="#c31807">→</text>
+  </svg>
+  <div class="mono" style="left:16mm;top:56mm">✱ Контакты</div>
+  <h2 class="disp" style="left:16mm;top:63mm;font-size:30pt">Начните учиться <em>уже сегодня</em></h2>
+  <div style="left:16mm;top:88mm"><div class="mono" style="opacity:.75">Бесплатный звонок по России</div><div class="disp" style="font-size:54pt;margin-top:2mm">8 800 600 22 63</div></div>
+  <div style="left:16mm;right:16mm;top:128mm;display:flex;gap:14mm;border-top:1px solid rgba(255,255,255,.45);padding-top:5mm">
+    <div><div class="mono" style="opacity:.75">Сайт</div><div class="disp" style="font-size:17pt;font-weight:700;margin-top:2mm">maso.academy ↗</div></div>
+    <div><div class="mono" style="opacity:.75">Почта</div><div class="disp" style="font-size:17pt;font-weight:700;margin-top:2mm">mail@maso.academy</div></div>
+  </div>
+  <div class="disp" style="left:-6mm;bottom:-22mm;font-size:150pt;white-space:nowrap;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.45)">maso.academy</div>
+</section>
+
+<script>
+/* ========= КАРТА РОССИИ ========= */
+const LAND=[
+[[28.0,59.45],[29.5,59.8],[30.3,59.9],[29.5,60.2],[28.7,60.7],[27.8,60.55],[29.6,61.2],[31.3,62.5],[29.9,63.7],[30.5,64.2],[29.5,65.5],[30.0,67.7],[28.7,68.9],[28.9,69.05],[30.8,69.8],[33.0,69.4],[36.0,69.1],[40.0,67.9],[41.2,66.8],[38.5,66.1],[35.0,66.4],[32.5,67.1],[33.5,66.3],[34.8,64.5],[37.0,63.8],[39.8,64.6],[40.5,64.5],[42.0,66.4],[44.2,66.6],[43.5,68.6],[45.9,67.6],[46.5,66.8],[48.5,67.7],[53.0,68.5],[54.5,68.2],[59.0,68.4],[60.9,69.9],[64.0,69.3],[66.8,70.6],[68.5,72.5],[69.8,73.5],[72.5,72.8],[72.6,70.5],[73.6,68.5],[74.6,68.8],[75.0,72.0],[77.5,72.5],[80.5,73.6],[86.0,74.0],[90.0,75.5],[95.0,76.1],[100.0,76.6],[104.3,77.7],[106.5,76.9],[111.0,76.6],[113.5,75.6],[113.0,73.8],[118.0,73.5],[124.0,73.6],[127.0,73.5],[129.0,72.0],[132.0,71.3],[137.0,71.5],[140.0,72.5],[146.0,72.3],[150.0,71.4],[154.0,70.9],[160.0,70.0],[163.0,69.7],[167.0,69.6],[170.5,70.1],[175.0,69.9],[180.0,68.9],[186.0,67.6],[190.3,66.1],[188.5,64.9],[186.0,64.3],[182.5,65.5],[179.0,64.8],[178.5,63.0],[174.0,61.8],[170.5,60.0],[166.0,60.3],[163.4,59.8],[162.0,58.0],[163.2,56.2],[161.8,55.0],[158.7,53.0],[156.7,51.0],[156.0,52.5],[155.6,55.5],[156.8,57.8],[160.0,60.7],[159.5,61.7],[156.0,61.6],[154.0,59.2],[151.5,59.6],[148.5,59.3],[145.0,59.4],[142.0,59.0],[140.5,58.2],[138.0,56.5],[137.0,54.0],[139.0,54.2],[140.5,53.2],[141.4,52.2],[140.5,50.0],[140.3,48.0],[138.5,46.6],[136.0,44.0],[133.0,42.8],[131.8,43.0],[130.7,42.3],[131.3,44.9],[133.0,45.0],[134.7,48.3],[133.0,48.1],[130.9,47.7],[130.6,48.9],[127.5,49.8],[125.7,53.0],[123.5,53.5],[120.8,53.3],[119.2,50.3],[117.8,49.5],[116.7,49.9],[114.3,50.3],[110.7,49.1],[108.5,49.3],[106.2,50.3],[102.3,51.4],[99.0,52.0],[98.0,50.6],[97.4,49.8],[94.8,50.0],[92.2,50.7],[90.0,50.1],[87.8,49.2],[86.8,49.8],[85.0,50.1],[83.4,51.0],[81.0,50.9],[80.0,50.8],[77.9,53.3],[76.2,54.2],[73.4,53.5],[73.7,54.1],[71.0,54.2],[70.5,55.2],[68.5,54.9],[65.5,54.6],[62.0,54.0],[61.0,53.6],[61.6,52.3],[60.0,51.9],[61.6,51.3],[60.0,50.8],[57.2,50.9],[55.7,50.6],[54.6,51.0],[53.0,51.5],[50.7,51.6],[48.6,50.6],[48.8,49.9],[46.8,49.3],[47.0,48.0],[48.0,47.7],[49.2,46.4],[47.5,45.6],[46.8,44.6],[47.4,43.5],[47.6,43.0],[48.4,41.9],[46.6,41.8],[45.0,42.6],[43.5,42.9],[42.0,43.2],[40.0,43.4],[38.0,44.6],[36.8,45.1],[38.0,46.0],[38.2,46.7],[39.3,47.2],[39.7,47.8],[40.0,49.0],[38.2,50.0],[36.0,50.4],[35.3,51.1],[34.2,51.3],[33.0,52.3],[31.8,52.1],[31.3,53.0],[32.7,53.4],[31.0,54.2],[30.8,55.6],[28.2,56.1],[27.7,57.3],[27.4,58.0],[27.8,58.9]],
+[[19.6,54.4],[22.8,54.4],[22.8,55.1],[21.2,55.3],[19.9,54.9]],
+[[142.0,54.3],[143.0,53.0],[143.2,51.0],[144.0,49.0],[143.0,47.0],[142.0,46.0],[141.9,47.5],[142.2,49.5],[141.7,52.0],[142.4,53.5]],
+[[52.5,71.3],[55.5,70.6],[57.5,70.7],[56.0,72.5],[58.0,74.0],[62.0,75.5],[68.5,76.9],[66.0,77.0],[59.0,75.8],[55.5,74.0],[53.0,72.5]],
+[[96.0,78.6],[95.5,79.5],[99.5,80.6],[104.5,79.0],[101.0,78.0]],
+[[137.5,75.0],[142.5,75.8],[148.5,75.3],[142.0,73.9],[138.5,74.3]],
+[[178.6,71.0],[180.5,71.5],[182.4,71.2],[180.0,70.8]]
+];
+
+/* ⚠️ ЗАМЕНИТЕ на реальные города клиентов: [название, долгота, широта, подпись 1/0, сторона подписи ne|nw|se|sw] */
+const CITIES=[
+["Москва",37.6,55.75,1,"sw"],["Санкт-Петербург",30.3,59.95,1,"nw"],["Калининград",20.5,54.7,1,"se"],["Мурманск",33.1,68.97,1,"ne"],
+["Архангельск",40.5,64.5,0],["Вологда",39.9,59.2,0],["Ярославль",39.9,57.6,0],["Тула",37.6,54.2,0],["Воронеж",39.2,51.7,0],
+["Н. Новгород",44.0,56.3,0],["Казань",49.1,55.8,1,"ne"],["Самара",50.1,53.2,0],["Саратов",46.0,51.5,0],["Волгоград",44.5,48.7,0],
+["Ростов-на-Дону",39.7,47.2,0],["Краснодар",39.0,45.0,1,"sw"],["Ставрополь",42.0,45.0,0],["Махачкала",47.5,43.0,0],
+["Киров",49.7,58.6,0],["Сыктывкар",50.8,61.7,0],["Пермь",56.2,58.0,0],["Уфа",56.0,54.7,0],["Оренбург",55.1,51.8,0],
+["Екатеринбург",60.6,56.8,1,"ne"],["Челябинск",61.4,55.15,0],["Тюмень",65.5,57.15,0],["Салехард",66.6,66.5,0],["Сургут",73.4,61.25,0],
+["Омск",73.4,55.0,0],["Новосибирск",82.9,55.0,1,"se"],["Томск",85.0,56.5,0],["Барнаул",83.8,53.35,0],["Кемерово",86.1,55.35,0],
+["Красноярск",92.9,56.0,1,"ne"],["Норильск",88.2,69.35,1,"ne"],["Иркутск",104.3,52.3,1,"se"],["Улан-Удэ",107.6,51.8,0],["Чита",113.5,52.0,0],
+["Якутск",129.7,62.0,1,"ne"],["Благовещенск",127.5,50.3,0],["Хабаровск",135.1,48.5,1,"ne"],["Владивосток",131.9,43.1,1,"se"],
+["Ю.-Сахалинск",142.7,46.95,0],["Магадан",150.8,59.6,0],["П.-Камчатский",158.65,53.0,1,"sw"],["Анадырь",177.5,64.7,0]
+];
+
+(function(){
+  const r=Math.PI/180,p1=52*r,p2=64*r,p0=60*r,l0=100*r;
+  const n=(Math.sin(p1)+Math.sin(p2))/2,C=Math.cos(p1)**2+2*n*Math.sin(p1),rho0=Math.sqrt(C-2*n*Math.sin(p0))/n;
+  const pr=(lo,la)=>{const rho=Math.sqrt(C-2*n*Math.sin(la*r))/n,t=n*(lo*r-l0);return[rho*Math.sin(t),-(rho0-rho*Math.cos(t))]};
+  const W=1000,H=470,pad=8;
+  const raw=LAND.map(p=>p.map(([a,b])=>pr(a,b)));
+  const all=raw.flat(),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);
+  const mnx=Math.min(...xs),mxx=Math.max(...xs),mny=Math.min(...ys),mxy=Math.max(...ys);
+  const s=Math.min((W-2*pad)/(mxx-mnx),(H-2*pad)/(mxy-mny));
+  const ox=(W-(mxx-mnx)*s)/2,oy=(H-(mxy-mny)*s)/2;
+  const fit=([x,y])=>[ox+(x-mnx)*s,oy+(y-mny)*s];
+  const polys=raw.map(p=>p.map(fit));
+  const inside=(x,y,poly)=>{let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const[xi,yi]=poly[i],[xj,yj]=poly[j];if((yi>y)!=(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)c=!c}return c};
+  const mix=(a,b,t)=>`rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')})`;
+  const cp=CITIES.map(c=>({n:c[0],l:c[3],d:c[4]||'ne',p:fit(pr(c[1],c[2]))}));
+
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:100%;overflow:visible" xmlns="http://www.w3.org/2000/svg">`;
+  const st=7,sg=2*24*24;
+  for(let j=0,y=st/2;y<H;j++,y+=st*.866){
+    for(let x=(j%2?st:st/2);x<W;x+=st){
+      if(!polys.some(p=>inside(x,y,p)))continue;
+      let h=0;for(const c of cp){const dx=x-c.p[0],dy=y-c.p[1];h+=Math.exp(-(dx*dx+dy*dy)/sg)}
+      h=Math.min(1,h);
+      svg+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(1.05+2.1*h).toFixed(2)}" fill="${mix([190,178,164],[195,24,7],Math.pow(h,.7))}"/>`;
+    }
+  }
+  const [mx,my]=cp[0].p;
+  cp.slice(1).forEach(c=>{const[x,y]=c.p,d=Math.hypot(x-mx,y-my);
+    svg+=`<path d="M${mx},${my} Q${(mx+x)/2},${Math.min(my,y)-d*.3} ${x},${y}" fill="none" stroke="#0F0B0B" stroke-width=".6" stroke-dasharray="2 3" opacity=".35"/>`});
+  cp.forEach((c,i)=>{const[x,y]=c.p;
+    if(i===0){
+      svg+=`<circle class="pulse" cx="${x}" cy="${y}" r="10" fill="none" stroke="#c31807" stroke-width="2"/>`;
+      svg+=`<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="#c31807" stroke-width="1.5"/><circle cx="${x}" cy="${y}" r="5.5" fill="#c31807"/>`;
+    } else svg+=`<circle cx="${x}" cy="${y}" r="2.4" fill="#0F0B0B"/>`;
+    if(c.l){
+      const dx=c.d.includes('w')?-1:1,dy=c.d.includes('s')?1:-1;
+      const lx=x+dx*10,ly=y+dy*10;
+      svg+=`<line x1="${x}" y1="${y}" x2="${lx}" y2="${ly}" stroke="#0F0B0B" stroke-width=".8"/>`;
+      svg+=`<text x="${lx+dx*2}" y="${ly+(dy>0?9:-2)}" text-anchor="${dx<0?'end':'start'}" font-family="${i===0?'Unbounded':'JetBrains Mono'}" font-weight="${i===0?900:700}" font-size="${i===0?13:9.5}" letter-spacing="${i===0?0:1}" fill="${i===0?'#c31807':'#0F0B0B'}" stroke="#F1ECE3" stroke-width="3" paint-order="stroke">${c.n.toUpperCase()}</text>`;
+    }
+  });
+  svg+=`</svg>`;
+  document.getElementById('map').innerHTML=svg;
+  document.getElementById('cityCount').textContent=CITIES.length;
+})();
+</script>
+
+
+</body></html>
